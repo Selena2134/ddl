@@ -1,0 +1,32 @@
+  Creation des tables /
+
+CREATE TABLE Customer (
+    Customer_id VARCHAR2(20) PRIMARY KEY,
+    customer_Name VARCHAR2(20) NOT NULL,
+    customer_Tel NUMBER
+);
+
+CREATE TABLE Product (
+    Product_id VARCHAR2(20) PRIMARY KEY,
+    product_name VARCHAR2(20) NOT NULL,
+    category VARCHAR2(20),
+    Price NUMBER CHECK (Price > 0)
+);
+
+CREATE TABLE Orders (
+    Customer_id VARCHAR2(20),
+    Product_id VARCHAR2(20),
+    OrderDate DATE DEFAULT SYSDATE,
+    quantity NUMBER,
+    total_amount NUMBER,
+    FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id),
+    FOREIGN KEY (Product_id) REFERENCES Product(Product_id)
+);
+
+Ajout de la colonne Catégorie à la table PRODUCT :
+
+ALTER TABLE Product ADD (Category VARCHAR2(20));
+
+ Ajout de la colonne OrderDate à la table ORDERS :
+
+ALTER TABLE Orders ADD (OrderDate DATE DEFAULT SYSDATE);
